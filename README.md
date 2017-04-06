@@ -10,12 +10,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to install the software and how to install them
 
-```
-https://git-scm.com/downloads
-```
-```
-https://nodejs.org/en/
-```
+Download [Node.js Current / Latest](https://nodejs.org/en/)
+Download [Git](https://git-scm.com/downloads)
 
 ### Installing
 
@@ -33,8 +29,13 @@ Install cordova
 npm install cordova -g
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+### Run the app
 
+Run the application
+
+```
+ionic serve
+```
 
 ## Deployment
 
