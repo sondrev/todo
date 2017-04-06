@@ -16,6 +16,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Data } from '../providers/data';
 
+import { Camera } from '@ionic-native/camera';
+
 export const firebaseConfig = {
   apiKey: "AIzaSyD7T2PcuoS2QOrzfrL3X1Y3jcSczxawsss",
   authDomain: "todo-2b60a.firebaseapp.com",
@@ -52,6 +54,7 @@ export const firebaseConfig = {
     StatusBar,
     SplashScreen,
     Data,
+    Camera,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

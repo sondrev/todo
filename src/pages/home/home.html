@@ -8,6 +8,8 @@
 
   <ion-card *ngFor="let item of items | async">
 
+    <img *ngIf="item.image" [src]="item.image" />
+
     <ion-card-content>
       <ion-card-title>
         {{item.title}}

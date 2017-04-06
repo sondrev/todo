@@ -1,29 +1,36 @@
 <ion-header>
   <ion-toolbar>
-  	<ion-title>
-  		Add To-do
-  	</ion-title>
-    	<ion-buttons end>
-    		<button ion-button icon-only (click)="close()"><ion-icon name="close"></ion-icon></button>
-    	</ion-buttons>
-    </ion-toolbar>
+    <ion-title>
+      Add To-do
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="close()"><ion-icon name="close"></ion-icon></button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-	<ion-list>
+  <ion-list>
 
-	  <ion-item>
-	    <ion-label floating>Title</ion-label>
-	    <ion-input type="text" [(ngModel)]="title"></ion-input>
-	  </ion-item>
+    <ion-item>
+      <ion-label floating>Title</ion-label>
+      <ion-input type="text" [(ngModel)]="title"></ion-input>
+    </ion-item>
 
-	  <ion-item>
-	    <ion-label floating>Description</ion-label>
-	    <ion-input type="text" [(ngModel)]="description"></ion-input>
-	  </ion-item>
+    <ion-item>
+      <ion-label floating>Description</ion-label>
+      <ion-input type="text" [(ngModel)]="description"></ion-input>
+    </ion-item>
 
-	</ion-list>
-
-	<button full ion-button (click)="saveItem()">Save</button>
+  </ion-list>
+  <ion-row *ngIf="loading">
+    <ion-col text-center>
+      <ion-spinner>
+      </ion-spinner>
+    </ion-col>
+  </ion-row>
+  <img *ngIf="image && !loading" [src]="image" />
+  <button full ion-button (click)="addImage()">Add Image</button>
+  <button full ion-button (click)="saveItem()">Save</button>
 
 </ion-content>
