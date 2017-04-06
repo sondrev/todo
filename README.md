@@ -58,6 +58,10 @@ Deploy your app to Ionic View
 ionic upload
 ```
 
+## Steps
+
+This project follows several steps - see the [STEPS.md](STEPS.md) file for details
+
 ## Author
 
 [Anders Langseth](https://github.com/langz)
