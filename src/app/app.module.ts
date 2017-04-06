@@ -2,6 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
+import { AngularFireModule } from 'angularfire2';
 
 import { MyApp } from './app.component';
 
@@ -15,6 +16,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Data } from '../providers/data';
 
+export const firebaseConfig = {
+  apiKey: "AIzaSyD7T2PcuoS2QOrzfrL3X1Y3jcSczxawsss",
+  authDomain: "todo-2b60a.firebaseapp.com",
+  databaseURL: "https://todo-2b60a.firebaseio.com",
+  storageBucket: "todo-2b60a.appspot.com",
+  messagingSenderId: "286690376664"
+};
+
 @NgModule({
   declarations: [
     MyApp,
@@ -27,7 +36,8 @@ import { Data } from '../providers/data';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    AngularFireModule.initializeApp(firebaseConfig),
   ],
   bootstrap: [IonicApp],
   entryComponents: [

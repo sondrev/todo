@@ -6,7 +6,7 @@
 
 <ion-content>
 
-  <ion-card *ngFor="let item of items">
+  <ion-card *ngFor="let item of items | async">
 
     <ion-card-content>
       <ion-card-title>

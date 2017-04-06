@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ModalController, NavController } from 'ionic-angular';
 import { AddItemPage } from '../add-item/add-item'
-import { Data } from '../../providers/data';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 @Component({
   selector: 'page-home',
@@ -9,17 +9,11 @@ import { Data } from '../../providers/data';
 })
 export class HomePage {
 
-  public items = [];
+  public items: FirebaseListObservable<any>;
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public dataService: Data) {
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public af: AngularFire) {
 
-    this.dataService.getData().then((todos) => {
-
-      if (todos) {
-        this.items = JSON.parse(todos);
-      }
-
-    });
+    this.items = af.database.list('/items');
 
   }
 
@@ -40,21 +34,20 @@ export class HomePage {
 
   addVote(item) {
     item.votes += 1;
-    this.saveItems();
+    this.updateItem(item.$key, item.votes);
   }
 
   subtractVote(item) {
     item.votes -= 1;
-    this.saveItems();
+    this.updateItem(item.$key, item.votes);
+  }
+
+  updateItem(key, votes) {
+    this.items.update(key, { votes: votes });
   }
 
   saveItem(item) {
     this.items.push(item);
-    this.saveItems();
-  }
-
-  saveItems() {
-    this.dataService.save(this.items);
   }
 
 }
