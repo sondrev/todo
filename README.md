@@ -42,13 +42,6 @@ ionic serve
 * Register for [Ionic View](https://apps.ionic.io/login)
 * Download [Ionic View](http://view.ionic.io/)
 
-## Build
-
-Build the application
-
-```
-ionic build
-```
 
 ## Deploy
 
@@ -58,14 +51,33 @@ Deploy your app to Ionic View
 ionic upload
 ```
 
+Run ionic serve before upload, so that it will upload the latest "build"
+
+```
+ionic serve
+```
+
 ## Steps
 
 This project follows several steps - see the [STEPS.md](STEPS.md) file for details
 
+## Build for Android
+
+Add to cordova
+
+```
+cordova platform add android@6.2.1
+```
+
+Run the app in Android Studio emulator
+
+```
+ionic run android
+```
+
 ## Author
 
 [Anders Langseth](https://github.com/langz)
-
 
 ## License
 
