@@ -10,20 +10,20 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to install the software and how to install them
 
-Download [Node.js Current / Latest](https://nodejs.org/en/)
-Download [Git](https://git-scm.com/downloads)
+* Download [Node.js Current / Latest](https://nodejs.org/en/)
+* Download [Git](https://git-scm.com/downloads)
 
 ### Installing
 
 A step by step series of examples that tell you have to get a development env running
 
-Install ionic
+Install Ionic
 
 ```
 npm install ionic -g
 ```
 
-Install cordova
+Install Cordova
 
 ```
 npm install cordova -g
@@ -39,8 +39,8 @@ ionic serve
 
 ## Deployment
 
-Register for [Ionic View](https://apps.ionic.io/login)
-Download [Ionic View](http://view.ionic.io/)
+* Register for [Ionic View](https://apps.ionic.io/login)
+* Download [Ionic View](http://view.ionic.io/)
 
 ## Build
 
@@ -58,9 +58,9 @@ Deploy your app to Ionic View
 ionic upload
 ```
 
-## Authors
+## Author
 
-* **Anders Langseth** - *Initial work* - [Anders Langseth](https://github.com/langz)
+[Anders Langseth](https://github.com/langz)
 
 
 ## License
