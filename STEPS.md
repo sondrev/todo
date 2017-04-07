@@ -14,7 +14,224 @@ git stash && git checkout step-1
 
 We will start off with a very clean application. Only empty files.
 
-What we want to create is an application where we can store our todos.
+What we aim to create is an application where we can store our todos.
+We want to be able to:
+* Create todos
+* Save todos
+* View todos
+* Vote for todos
+
+At this step, the project consists of the following blank pages:
+* add-item -> for creating todos
+* data.ts -> for saving todos
+* home -> for viewing & voting for todos
+
+
+Lets start by creating the add-item page, so that we can add todos.
+
+First we need a way to get to the add-item page.
+
+home.html:
+
+```html
+  <ion-fab right bottom>
+    <button ion-fab (click)="addItem()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+```
+
+home.ts:
+
+```ts
+  addItem() {
+    let addModal = this.modalCtrl.create(AddItemPage);
+    addModal.present();
+  }
+```
+
+add-item.html:
+
+```html
+<ion-header>
+  <ion-toolbar>
+  	<ion-title>
+  		Add To-do
+  	</ion-title>
+    	<ion-buttons end>
+    		<button ion-button icon-only (click)="close()"><ion-icon name="close"></ion-icon></button>
+    	</ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-list>
+
+	  <ion-item>
+	    <ion-label floating>Title</ion-label>
+	    <ion-input type="text" [(ngModel)]="title"></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label floating>Description</ion-label>
+	    <ion-input type="text" [(ngModel)]="description"></ion-input>
+	  </ion-item>
+
+	</ion-list>
+
+	<button full ion-button (click)="saveItem()">Save</button>
+
+</ion-content>
+```
+
+add-item.ts:
+
+```ts
+	saveItem(){
+
+		let newItem = {
+		  title: this.title,
+		  description: this.description,
+      votes: 0
+		};
+
+		this.view.dismiss(newItem);
+
+	}
+
+	close(){
+		this.view.dismiss();
+	}
+```
+
+
+Now we need to add the item to the list of items when we dismiss the add-item page
+
+home.ts:
+
+```ts
+  addItem() {
+    let addModal = this.modalCtrl.create(AddItemPage);
+
+    addModal.onDidDismiss((item) => {
+      if (item) {
+        this.saveItem(item);
+      }
+    });
+    addModal.present();
+  }
+```
+We should also display the list of items in the HTML
+
+home.html:
+
+```html
+  <ion-card *ngFor="let item of items | async">
+
+    <ion-card-content>
+      <ion-card-title>
+        {{item.title}}
+      </ion-card-title>
+      <p>
+        {{item.description}}
+      </p>
+    </ion-card-content>
+
+    <ion-row no-padding>
+      <ion-col>
+        <button ion-button clear small color="danger" icon-left (click)="subtractVote(item)">
+          <ion-icon name='arrow-dropdown'></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col text-center>
+        {{item.votes}}
+      </ion-col>
+      <ion-col text-right>
+        <button ion-button clear small icon-right (click)="addVote(item)">
+          <ion-icon name='arrow-dropup'></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+```
+
+Now we can add the logic for voting
+
+home.ts:
+
+```ts
+  addVote(item) {
+    item.votes += 1;
+  }
+
+  subtractVote(item) {
+    item.votes -= 1;
+  }
+```
+
+Because our app forgets our todos everytime we refresh, we would like to store them some place.
+
+data.ts:
+
+```ts
+  getData() {
+    return this.storage.get('todos');  
+  }
+
+  save(data){
+    let newData = JSON.stringify(data);
+    this.storage.set('todos', newData);
+  }
+```
+
+home.ts:
+
+```ts
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public dataService: Data) {
+
+    this.dataService.getData().then((todos) => {
+
+      if (todos) {
+        this.items = JSON.parse(todos);
+      }
+
+    });
+
+  }
+
+  ionViewDidLoad() {
+
+  }
+
+  addItem() {
+    let addModal = this.modalCtrl.create(AddItemPage);
+
+    addModal.onDidDismiss((item) => {
+      if (item) {
+        this.saveItem(item);
+      }
+    });
+    addModal.present();
+  }
+
+  addVote(item) {
+    item.votes += 1;
+    this.saveItems();
+  }
+
+  subtractVote(item) {
+    item.votes -= 1;
+    this.saveItems();
+  }
+
+  saveItem(item) {
+    this.items.push(item);
+    this.saveItems();
+  }
+
+  saveItems() {
+    this.dataService.save(this.items);
+  }
+```
 
 ## Step 2
 
