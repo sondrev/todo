@@ -61,6 +61,10 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 ...
 
+export class HomePage {
+
+  public items: FirebaseListObservable<any>;
+
   constructor(public af: AngularFire) {
 
     this.items = af.database.list('/items');
