@@ -27,6 +27,32 @@ Stash local changes and checkout branch step-2
 git stash && git checkout step-2
 ```
 
+Lets add angularfire2 and firebase to the application:
+
+app.module.ts
+
+```
+import { AngularFireModule } from 'angularfire2';
+
+...
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyD7T2PcuoS2QOrzfrL3X1Y3jcSczxawsss",
+  authDomain: "todo-2b60a.firebaseapp.com",
+  databaseURL: "https://todo-2b60a.firebaseio.com",
+  storageBucket: "todo-2b60a.appspot.com",
+  messagingSenderId: "286690376664"
+};
+
+...
+
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
+    AngularFireModule.initializeApp(firebaseConfig),
+  ],
+```
 
 ## Step 3
 
