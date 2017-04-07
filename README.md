@@ -29,6 +29,12 @@ Install Cordova
 npm install cordova -g
 ```
 
+Install project dependencies
+
+```
+npm install
+```
+
 ### Run the app
 
 Run the application
