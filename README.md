@@ -2,6 +2,12 @@
 
 Let's create a todo-app!
 
+## Useful links
+
+* [Ionic Docs](http://ionicframework.com/docs/intro/installation/)
+
+* This project follows several steps - see the [STEPS.md](STEPS.md) file for details
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
