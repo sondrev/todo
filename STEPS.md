@@ -31,7 +31,7 @@ Lets add angularfire2 and firebase to the application:
 
 app.module.ts
 
-```
+```ts
 import { AngularFireModule } from 'angularfire2';
 
 ...
